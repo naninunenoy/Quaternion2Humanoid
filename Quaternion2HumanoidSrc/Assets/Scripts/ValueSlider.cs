@@ -7,12 +7,11 @@ using UniRx;
 namespace Assets.Quaternion2Humanoid.Scripts {
     public class ValueSlider : MonoBehaviour {
         [SerializeField] Slider slider;
+        public Slider Slider { get { return slider; } }
         [SerializeField] Text text;
 
         ReactiveProperty<float> reactiveValue = new ReactiveProperty<float>();
         public IReadOnlyReactiveProperty<float> ReactiveValue { get { return reactiveValue; } }
-
-        public void SetValue(float value) { slider.value = value; }
 
         void Awake() {
             // スライダーのイベント

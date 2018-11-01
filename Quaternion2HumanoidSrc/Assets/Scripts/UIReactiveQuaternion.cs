@@ -17,10 +17,10 @@ namespace Assets.Quaternion2Humanoid.Scripts {
         public void OverrideQuaternion(Quaternion quaternion) {
             // scriptからの上書きはReactivePropertyとして通知しない
             isLockReactiveQuaternion = false;
-            sliderW.SetValue(quaternion.w);
-            sliderX.SetValue(quaternion.x);
-            sliderY.SetValue(quaternion.y);
-            sliderZ.SetValue(quaternion.z);
+            sliderW.Slider.value = quaternion.w;
+            sliderX.Slider.value = quaternion.x;
+            sliderY.Slider.value = quaternion.y;
+            sliderZ.Slider.value = quaternion.z;
             isLockReactiveQuaternion = true;
         }
 
