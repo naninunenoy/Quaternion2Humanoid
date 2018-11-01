@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.496413, b: 0.5748175, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -241,11 +241,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!95 &288223409 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 9500000, guid: 8f0565f23a2b58541a475bd3c1393052,
-    type: 3}
-  m_PrefabInternal: {fileID: 887034746}
 --- !u!1 &289208963
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,7 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2b92833aae414919844fd571b406fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  humanoidAnimator: {fileID: 288223409}
+  humanoidBones: {fileID: 887034748}
   leftUpperArmReactiveQuaternion: {fileID: 889254284}
   leftLowerArmReactiveQuaternion: {fileID: 1791316900}
 --- !u!1001 &367231547
@@ -569,6 +564,22 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f0565f23a2b58541a475bd3c1393052, type: 3}
   m_IsPrefabAsset: 0
+--- !u!1 &887034747 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100326, guid: 8f0565f23a2b58541a475bd3c1393052,
+    type: 3}
+  m_PrefabInternal: {fileID: 887034746}
+--- !u!114 &887034748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 887034747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36338e17dedfa3c42b8d6c317f20cc26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &889254284 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114963361144378616, guid: 009ed4d360a40494ea46c19ba1c85e3d,
