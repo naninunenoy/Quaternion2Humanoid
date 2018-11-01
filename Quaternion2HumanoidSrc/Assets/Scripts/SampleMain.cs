@@ -9,7 +9,7 @@ namespace Assets.Quaternion2Humanoid.Scripts {
         [SerializeField] UIReactiveQuaternion reactiveQuaternion;
 
         void Awake() {
-            reactiveQuaternion.OverrideQuaternion(mainObjectTransform.rotation);
+            reactiveQuaternion.SetDefaultQuaternion(mainObjectTransform.rotation);
             reactiveQuaternion.ReactiveQuaternion.Subscribe(
                 q => { mainObjectTransform.rotation = q; }
             );
