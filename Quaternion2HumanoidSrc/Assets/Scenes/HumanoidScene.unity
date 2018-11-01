@@ -383,7 +383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   humanoidAnimator: {fileID: 288223409}
   leftUpperArmReactiveQuaternion: {fileID: 889254284}
-  leftForeArmReactiveQuaternion: {fileID: 1791316900}
+  leftLowerArmReactiveQuaternion: {fileID: 1791316900}
 --- !u!1001 &367231547
 Prefab:
   m_ObjectHideFlags: 0

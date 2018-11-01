@@ -7,7 +7,7 @@ namespace Assets.Quaternion2Humanoid.Scripts {
     public class HumanoidMain : MonoBehaviour {
         [SerializeField] Animator humanoidAnimator;
         [SerializeField] UIReactiveQuaternion leftUpperArmReactiveQuaternion;
-        [SerializeField] UIReactiveQuaternion leftForeArmReactiveQuaternion;
+        [SerializeField] UIReactiveQuaternion leftLowerArmReactiveQuaternion;
 
         void Awake() {
             // leftUpperArm
@@ -18,12 +18,12 @@ namespace Assets.Quaternion2Humanoid.Scripts {
                     leftUpperArmTransform.rotation = q;
                 }
             );
-            // leftForeArm
-            var leftForeArmTransform = humanoidAnimator.GetBoneTransform(HumanBodyBones.LeftUpperArm);
-            leftForeArmReactiveQuaternion.SetDefaultQuaternion(leftForeArmTransform.rotation);
-            leftForeArmReactiveQuaternion.ReactiveQuaternion.Subscribe(
+            // leftLowerArm
+            var leftLowerArmTransform = humanoidAnimator.GetBoneTransform(HumanBodyBones.LeftLowerArm);
+            leftLowerArmReactiveQuaternion.SetDefaultQuaternion(leftLowerArmTransform.rotation);
+            leftLowerArmReactiveQuaternion.ReactiveQuaternion.Subscribe(
                 q => {
-                    leftForeArmTransform.rotation = q; 
+                    leftLowerArmTransform.rotation = q;
                 }
             );
         }
