@@ -5,15 +5,13 @@ using UniRx;
 
 namespace Assets.Quaternion2Humanoid.Scripts {
     public class HumanoidMain : MonoBehaviour {
-        [Header("* leftUpperArm")]
-        [SerializeField] Transform leftUpperArmTransform;
+        [SerializeField] Animator humanoidAnimator;
         [SerializeField] UIReactiveQuaternion leftUpperArmReactiveQuaternion;
-        [Header("* leftForeArm")]
-        [SerializeField] Transform leftForeArmTransform;
         [SerializeField] UIReactiveQuaternion leftForeArmReactiveQuaternion;
 
         void Awake() {
             // leftUpperArm
+            var leftUpperArmTransform = humanoidAnimator.GetBoneTransform(HumanBodyBones.LeftUpperArm);
             leftUpperArmReactiveQuaternion.SetDefaultQuaternion(leftUpperArmTransform.rotation);
             leftUpperArmReactiveQuaternion.ReactiveQuaternion.Subscribe(
                 q => { 
@@ -21,6 +19,7 @@ namespace Assets.Quaternion2Humanoid.Scripts {
                 }
             );
             // leftForeArm
+            var leftForeArmTransform = humanoidAnimator.GetBoneTransform(HumanBodyBones.LeftUpperArm);
             leftForeArmReactiveQuaternion.SetDefaultQuaternion(leftForeArmTransform.rotation);
             leftForeArmReactiveQuaternion.ReactiveQuaternion.Subscribe(
                 q => {
