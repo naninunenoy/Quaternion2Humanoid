@@ -14,14 +14,18 @@ namespace Assets.Quaternion2Humanoid.Scripts {
 
         void Awake() {
             // leftUpperArm
-            leftUpperArmReactiveQuaternion.OverrideQuaternion(leftUpperArmTransform.rotation);
+            leftUpperArmReactiveQuaternion.SetDefaultQuaternion(leftUpperArmTransform.rotation);
             leftUpperArmReactiveQuaternion.ReactiveQuaternion.Subscribe(
-                q => { leftUpperArmTransform.rotation = q; }
+                q => { 
+                    leftUpperArmTransform.rotation = q;
+                }
             );
             // leftForeArm
-            leftForeArmReactiveQuaternion.OverrideQuaternion(leftForeArmTransform.rotation);
+            leftForeArmReactiveQuaternion.SetDefaultQuaternion(leftForeArmTransform.rotation);
             leftForeArmReactiveQuaternion.ReactiveQuaternion.Subscribe(
-                q => { leftForeArmTransform.rotation = q; }
+                q => {
+                    leftForeArmTransform.rotation = q; 
+                }
             );
         }
     }
