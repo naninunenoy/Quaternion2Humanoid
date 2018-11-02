@@ -25,8 +25,8 @@ namespace Quaternion2Humanoid {
             }
         }
 
-        public IDisposable SbscribeAsGlobalQuaternionTo(HumanBodyBones to, IObservable<Quaternion> sources) {
-            return sources.Subscribe(q => {
+        public IDisposable SbscribeAsGlobalQuaternionTo(HumanBodyBones to, IObservable<Quaternion> source) {
+            return source.Subscribe(q => {
                 var boneTrans = bonesTransformDict[to];
                 if (boneTrans != null) {
                     boneTrans.localRotation = q;
@@ -35,8 +35,8 @@ namespace Quaternion2Humanoid {
             });
         }
 
-        public IDisposable SbscribeAsLocalQuaternionTo(HumanBodyBones to, IObservable<Quaternion> sources) {
-            return sources.Subscribe(q => {
+        public IDisposable SbscribeAsLocalQuaternionTo(HumanBodyBones to, IObservable<Quaternion> source) {
+            return source.Subscribe(q => {
                 var boneTrans = bonesTransformDict[to];
                 if (boneTrans != null) {
                     boneTrans.rotation = q;
