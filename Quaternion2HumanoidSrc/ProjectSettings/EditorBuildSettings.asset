@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/HumanoidScene.unity
+    path: Assets/Scenes/LeftArmScene.unity
     guid: 70686a6e2ecf047548875f886ffb6657
   m_configObjects: {}
