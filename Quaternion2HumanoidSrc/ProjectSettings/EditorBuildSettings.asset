@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LeftArmScene.unity
     guid: 70686a6e2ecf047548875f886ffb6657
+  - enabled: 1
+    path: Assets/Scenes/HumanoidBodyScene.unity
+    guid: bed775bd034764acfb635437751b82c4
   m_configObjects: {}
