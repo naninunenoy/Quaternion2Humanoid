@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UniRx;
 
@@ -11,20 +12,30 @@ namespace Quaternion2Humanoid {
         IReadOnlyReactiveProperty<Quaternion> ReactiveQuaternion { get; }
     }
 
-    public class ChainedReactiveQuaternion : IReactiveQuaternion {
+    public class ChainedReactiveQuaternion : IOverwritableReactiveQuaternion {
         readonly IOverwritableReactiveQuaternion mine;
 
         public ChainedReactiveQuaternion(IOverwritableReactiveQuaternion mine) { this.mine = mine; }
 
         public void ChainToParent(IReactiveQuaternion parent) {
-            parent.ReactiveQuaternion.Subscribe(
-                parentQuat => {
-                    var q = mine.ReactiveQuaternion.Value;
-                    mine.OverwriteQuaternion(parentQuat * q);
-                }
-            );
+            Observable.CombineLatest(parent.ReactiveQuaternion, mine.ReactiveQuaternion)
+                      .Subscribe(quats => {
+                          mine.OverwriteQuaternion(quats[0] * quats[1]);
+                      });
         }
 
+        public void ChainToParents(params IReactiveQuaternion[] parents) {
+            var parentQuats = parents.Select(x => x.ReactiveQuaternion)
+                                     .Concat(new IReadOnlyReactiveProperty<Quaternion>[] { mine.ReactiveQuaternion });
+            parentQuats.Select(x => x.AsObservable())
+                       .CombineLatest()
+                       .Subscribe(quats => {
+                           var q = quats.Aggregate((q0, q1) => { return q0 * q1; });
+                           mine.OverwriteQuaternion(q);
+                       });
+        }
+
+        public void OverwriteQuaternion(Quaternion quaternion) { mine.OverwriteQuaternion(quaternion); }
         public IReadOnlyReactiveProperty<Quaternion> ReactiveQuaternion { get { return mine.ReactiveQuaternion; } }
     }
 }
