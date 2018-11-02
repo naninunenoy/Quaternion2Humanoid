@@ -5,4 +5,4 @@
             humanoidBones.ReactiveBones.Subscribe(                bone => {
                     Debug.LogFormat("{0} : q={1}", bone.Bone, bone.Quaternion);
                 }            ).AddTo(this);            // load scene event
-            sampleSceneButton.onClick.AddListener(() => { SceneManager.LoadScene("SampleScene"); });            humanoidSceneButton.onClick.AddListener(() => { SceneManager.LoadScene("HumanoidBodyScene"); });        }    }}
+            sampleSceneButton.onClick.AddListener(() => { SceneManager.LoadScene("SampleScene"); });            humanoidSceneButton.onClick.AddListener(() => { SceneManager.LoadScene("HumanoidBodyScene"); });            // validate auto slider update            leftUpperArmReactiveQuaternion.ValidateAutoUpdate(this);            leftLowerArmReactiveQuaternion.ValidateAutoUpdate(this);        }    }}

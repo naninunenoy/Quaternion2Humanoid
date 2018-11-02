@@ -73,6 +73,22 @@ namespace Assets.Quaternion2Humanoid.Scripts {
             ).AddTo(this);
             // load scene event
             leftArmSceneButton.onClick.AddListener(() => { SceneManager.LoadScene("LeftArmScene"); });
+            // validate auto slider update
+            rootQuat.ValidateAutoUpdate(this);
+            chestQuat.ValidateAutoUpdate(this);
+            neckQuat.ValidateAutoUpdate(this);
+            leftUpperArmQuat.ValidateAutoUpdate(this);
+            leftArmQuat.ValidateAutoUpdate(this);
+            leftHandQuat.ValidateAutoUpdate(this);
+            rightUpperArmQuat.ValidateAutoUpdate(this);
+            rightArmQuat.ValidateAutoUpdate(this);
+            rightHandQuat.ValidateAutoUpdate(this);
+            leftThighQuat.ValidateAutoUpdate(this);
+            leftShinQuat.ValidateAutoUpdate(this);
+            leftFootQuat.ValidateAutoUpdate(this);
+            rightThighQuat.ValidateAutoUpdate(this);
+            rightShinQuat.ValidateAutoUpdate(this);
+            rightFootQuat.ValidateAutoUpdate(this);
         }
     }
 }
