@@ -51,7 +51,7 @@ namespace Assets.Quaternion2Humanoid.Scripts {
         void Start() {
             // set Quaternion stream
             humanoidBones.SbscribeAsGlobalQuaternionTo(HumanBodyBones.Hips, rootQuat.ReactiveQuaternion).AddTo(this);
-            humanoidBones.SbscribeAsGlobalQuaternionTo(HumanBodyBones.Chest, chestQuat.ReactiveQuaternion).AddTo(this);
+            humanoidBones.SbscribeAsGlobalQuaternionTo(HumanBodyBones.Spine, chestQuat.ReactiveQuaternion).AddTo(this);
             humanoidBones.SbscribeAsGlobalQuaternionTo(HumanBodyBones.Neck, neckQuat.ReactiveQuaternion).AddTo(this);
             humanoidBones.SbscribeAsGlobalQuaternionTo(HumanBodyBones.LeftUpperArm, leftUpperArmQuat.ReactiveQuaternion).AddTo(this);
             humanoidBones.SbscribeAsGlobalQuaternionTo(HumanBodyBones.LeftLowerArm, leftArmQuat.ReactiveQuaternion).AddTo(this);
