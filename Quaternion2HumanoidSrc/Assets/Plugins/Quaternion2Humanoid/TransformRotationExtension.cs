@@ -4,7 +4,7 @@ using UnityEngine;
 using UniRx;
 
 namespace Quaternion2Humanoid {
-    public static class TransformRotaionExtension {
+    public static class TransformRotationExtension {
         public static Quaternion GetRelativeQuaternion(this Transform baseTransform, Quaternion quaternion) {
             var baseQuaternion = baseTransform.rotation;
             return Quaternion.Inverse(baseQuaternion) * quaternion * baseQuaternion;
