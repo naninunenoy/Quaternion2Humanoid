@@ -19,10 +19,9 @@ namespace Quaternion2Humanoid {
                 Debug.LogError("Humanoid Not Found.");
                 return;
             }
-            foreach (HumanBodyBones bone in Enum.GetValues(typeof(HumanBodyBones))) {
-                if (bone != HumanBodyBones.LastBone) {
-                    bonesTransformDict.Add(bone, humanoidAnimator.GetBoneTransform(bone));
-                }
+            for (int i = 0; i < (int)HumanBodyBones.LastBone; i++) {
+                var bone = (HumanBodyBones)i;
+                bonesTransformDict.Add(bone, humanoidAnimator.GetBoneTransform(bone));
             }
         }
 

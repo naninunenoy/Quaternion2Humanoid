@@ -4,5 +4,5 @@
             // observer
             humanoidBones.ReactiveBones.Subscribe(                bone => {
                     Debug.LogFormat("{0} : q={1}", bone.Bone, bone.Quaternion);
-                }            );            // load scene event
+                }            ).AddTo(this);            // load scene event
             sampleSceneButton.onClick.AddListener(() => { SceneManager.LoadScene("SampleScene"); });        }    }}
