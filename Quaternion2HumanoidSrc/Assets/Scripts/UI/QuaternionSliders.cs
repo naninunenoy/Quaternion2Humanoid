@@ -21,20 +21,24 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
 
         protected virtual void Awake() {
             // sliderによるQuaternion更新を通知
-            Observable.CombineLatest(
-                sliderW.ReactiveValue,
-                sliderX.ReactiveValue,
-                sliderY.ReactiveValue,
-                sliderZ.ReactiveValue
-            )
-            .Where(_ => { return !isLockReactiveQuaternion; })
-            .Subscribe(values => {
-                var quat = new Quaternion(values[1], values[2], values[3], values[0]).normalized;
-                reactiveQuaternion.Value = quat;
-                OverwriteQuaternion(quat);
-            }).AddTo(this);
+            SliderQuaternion.Where(_ => { return !isLockReactiveQuaternion; })
+                            .Subscribe(quat => {
+                                reactiveQuaternion.Value = quat;
+                                OverwriteQuaternion(quat);
+                            }).AddTo(this);
             // 自動更新可能に
             ValidateAutoUpdate(this);
+        }
+
+        protected IObservable<Quaternion> SliderQuaternion {
+            get {
+                return Observable.CombineLatest(
+                    sliderW.ReactiveValue,
+                    sliderX.ReactiveValue,
+                    sliderY.ReactiveValue,
+                    sliderZ.ReactiveValue)
+                    .Select(vals => { return new Quaternion(vals[1], vals[2], vals[3], vals[0]).normalized; });
+            }
         }
 
         public void OverwriteQuaternion(Quaternion quaternion) {

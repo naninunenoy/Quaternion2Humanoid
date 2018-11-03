@@ -22,12 +22,12 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
             base.Awake();
             // リセットボタン
             resetButton.onClick.AddListener(InitQuaternion);
-            ReactiveQuaternion.Subscribe(q => {
+            SliderQuaternion.Subscribe(q => {
                 var euler = q.eulerAngles;
-                rollText.text = string.Format("{0:F1}", euler.x);
-                pitchText.text = string.Format("{0:F1}", euler.y);
-                yawText.text = string.Format("{0:F1}", euler.z);
-            });
+                rollText.text = string.Format("{0:F1}°", euler.x);
+                pitchText.text = string.Format("{0:F1}°", euler.y);
+                yawText.text = string.Format("{0:F1}°", euler.z);
+            }).AddTo(this);
         }
     }
 }
