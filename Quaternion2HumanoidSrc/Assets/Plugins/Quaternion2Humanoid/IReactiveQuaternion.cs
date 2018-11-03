@@ -6,13 +6,15 @@ using UniRx;
 
 namespace Quaternion2Humanoid {
     public interface IOverwritableReactiveQuaternion : IReactiveQuaternion {
+        void Validate();
         void OverwriteQuaternion(Quaternion quaternion);
+        void SetDefaultQuaternion(Quaternion quaternion);
     }
     public interface IReactiveQuaternion {
         IReadOnlyReactiveProperty<Quaternion> ReactiveQuaternion { get; }
     }
 
-    public class ChainedReactiveQuaternion : IOverwritableReactiveQuaternion {
+    public class ChainedReactiveQuaternion : IReactiveQuaternion {
         readonly IOverwritableReactiveQuaternion mine;
 
         public ChainedReactiveQuaternion(IOverwritableReactiveQuaternion mine) { this.mine = mine; }
@@ -20,6 +22,7 @@ namespace Quaternion2Humanoid {
         public void ChainToParent(IReactiveQuaternion parent) {
             Observable.CombineLatest(parent.ReactiveQuaternion, mine.ReactiveQuaternion)
                       .Subscribe(quats => {
+                          mine.SetDefaultQuaternion(quats[0]);
                           mine.OverwriteQuaternion(quats[0] * quats[1]);
                       });
         }
@@ -35,7 +38,6 @@ namespace Quaternion2Humanoid {
                        });
         }
 
-        public void OverwriteQuaternion(Quaternion quaternion) { mine.OverwriteQuaternion(quaternion); }
         public IReadOnlyReactiveProperty<Quaternion> ReactiveQuaternion { get { return mine.ReactiveQuaternion; } }
     }
 }
