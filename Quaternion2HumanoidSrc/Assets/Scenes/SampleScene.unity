@@ -628,7 +628,7 @@ GameObject:
   - component: {fileID: 1873077929}
   - component: {fileID: 1873077928}
   m_Layer: 5
-  m_Name: HumanoidSceneButton
+  m_Name: RightArmSceneButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

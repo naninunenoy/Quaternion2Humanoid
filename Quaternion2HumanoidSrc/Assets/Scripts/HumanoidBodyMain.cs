@@ -130,7 +130,7 @@ namespace Assets.Quaternion2Humanoid.Scripts {
                 }
             ).AddTo(this);
             // load scene event
-            leftArmSceneButton.onClick.AddListener(() => { SceneManager.LoadScene("LeftArmScene"); });
+            leftArmSceneButton.onClick.AddListener(() => { SceneManager.LoadScene("RightArmScene"); });
             // validate auto slider update
             rootQuat.ValidateAutoUpdate(this);
             chestQuat.ValidateAutoUpdate(this);

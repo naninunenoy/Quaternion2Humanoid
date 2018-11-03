@@ -16,7 +16,7 @@ namespace Assets.Quaternion2Humanoid.Scripts {
         void Start() {
             reactiveQuaternion.ReactiveQuaternion.SubscribeToLocalRotation(mainObjectTransform).AddTo(this);
             // load scene event
-            humanoidSceneButton.onClick.AddListener(() => { SceneManager.LoadScene("LeftArmScene"); });
+            humanoidSceneButton.onClick.AddListener(() => { SceneManager.LoadScene("RightArmScene"); });
             // validate auto slider update
             reactiveQuaternion.ValidateAutoUpdate(this);
         }

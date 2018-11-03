@@ -611,7 +611,7 @@ GameObject:
   - component: {fileID: 732754060}
   - component: {fileID: 732754059}
   m_Layer: 5
-  m_Name: LeftArmSceneButton
+  m_Name: RightArmSceneButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

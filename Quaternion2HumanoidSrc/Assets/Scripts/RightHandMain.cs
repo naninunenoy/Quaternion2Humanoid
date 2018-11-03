@@ -8,17 +8,17 @@ using Quaternion2Humanoid;
 using Assets.Quaternion2Humanoid.Scripts.UI;
 
 namespace Assets.Quaternion2Humanoid.Scripts {
-    public class LeftHandMain : MonoBehaviour {
+    public class RightHandMain : MonoBehaviour {
         [SerializeField] ReactiveHumanoidBones humanoidBones;
-        [SerializeField] UIReactiveQuaternion leftUpperArmReactiveQuaternion;
-        [SerializeField] UIReactiveQuaternion leftLowerArmReactiveQuaternion;
+        [SerializeField] UIReactiveQuaternion rightUpperArmReactiveQuaternion;
+        [SerializeField] UIReactiveQuaternion rightLowerArmReactiveQuaternion;
         [SerializeField] Button sampleSceneButton;
         [SerializeField] Button humanoidSceneButton;
 
         void Start() {
             // rotation of lowerArm depends on rotation of upperArm
-            var upperArmQuaternion = leftUpperArmReactiveQuaternion;
-            var lowerArmQuaternion = new ChainedReactiveQuaternion(leftLowerArmReactiveQuaternion);
+            var upperArmQuaternion = rightUpperArmReactiveQuaternion;
+            var lowerArmQuaternion = new ChainedReactiveQuaternion(rightLowerArmReactiveQuaternion);
             lowerArmQuaternion.ChainToParent(upperArmQuaternion);
             humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.LeftUpperArm, upperArmQuaternion.ReactiveQuaternion).AddTo(this);
             humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.LeftLowerArm, lowerArmQuaternion.ReactiveQuaternion).AddTo(this);
@@ -32,8 +32,8 @@ namespace Assets.Quaternion2Humanoid.Scripts {
             sampleSceneButton.onClick.AddListener(() => { SceneManager.LoadScene("SampleScene"); });
             humanoidSceneButton.onClick.AddListener(() => { SceneManager.LoadScene("HumanoidBodyScene"); });
             // validate auto slider update
-            leftUpperArmReactiveQuaternion.ValidateAutoUpdate(this);
-            leftLowerArmReactiveQuaternion.ValidateAutoUpdate(this);
+            rightUpperArmReactiveQuaternion.ValidateAutoUpdate(this);
+            rightLowerArmReactiveQuaternion.ValidateAutoUpdate(this);
         }
     }
 }

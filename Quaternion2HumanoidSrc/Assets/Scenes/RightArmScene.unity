@@ -487,7 +487,7 @@ GameObject:
   - component: {fileID: 346232332}
   - component: {fileID: 346232333}
   m_Layer: 0
-  m_Name: LeftHandMain
+  m_Name: RightHandMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -520,8 +520,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   humanoidBones: {fileID: 887034748}
-  leftUpperArmReactiveQuaternion: {fileID: 423527585}
-  leftLowerArmReactiveQuaternion: {fileID: 259353647}
+  rightUpperArmReactiveQuaternion: {fileID: 423527585}
+  rightLowerArmReactiveQuaternion: {fileID: 259353647}
   sampleSceneButton: {fileID: 14864734}
   humanoidSceneButton: {fileID: 1483591887}
 --- !u!114 &423527585 stripped
