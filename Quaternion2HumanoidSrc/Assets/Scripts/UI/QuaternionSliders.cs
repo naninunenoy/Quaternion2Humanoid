@@ -15,11 +15,11 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
         [SerializeField]
         protected ValueSlider sliderZ;
 
-        bool isLockReactiveQuaternion = true;
+        bool isLockReactiveQuaternion = false;
         ReactiveProperty<Quaternion> reactiveQuaternion = new ReactiveProperty<Quaternion>();
         public IReadOnlyReactiveProperty<Quaternion> ReactiveQuaternion { get { return reactiveQuaternion; } }
 
-        void Awake() {
+        protected virtual void Awake() {
             // sliderによるQuaternion更新を通知
             Observable.CombineLatest(
                 sliderW.ReactiveValue,
@@ -27,7 +27,7 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
                 sliderY.ReactiveValue,
                 sliderZ.ReactiveValue
             )
-            .Where(_ => { return isLockReactiveQuaternion; })
+            .Where(_ => { return !isLockReactiveQuaternion; })
             .Subscribe(values => {
                 var quat = new Quaternion(values[1], values[2], values[3], values[0]).normalized;
                 reactiveQuaternion.Value = quat;
@@ -39,9 +39,9 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
 
         public void OverwriteQuaternion(Quaternion quaternion) {
             // scriptからの上書きはReactivePropertyとして通知しない
-            isLockReactiveQuaternion = false;
-            SetQuaternionToSliders(quaternion);
             isLockReactiveQuaternion = true;
+            SetQuaternionToSliders(quaternion);
+            isLockReactiveQuaternion = false;
         }
 
         protected void SetQuaternionToSliders(Quaternion quaternion) {

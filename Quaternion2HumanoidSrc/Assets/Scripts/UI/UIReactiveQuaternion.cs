@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
-using Quaternion2Humanoid;
 
 namespace Assets.Quaternion2Humanoid.Scripts.UI {
     public class UIReactiveQuaternion : QuaternionSliders {
@@ -23,7 +22,8 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
 
         public void InitQuaternion() { SetQuaternionToSliders(defaultQuaternion); }
 
-        void Awake() {
+        protected override void Awake() {
+            base.Awake();
             // リセットボタン
             resetButton.onClick.AddListener(InitQuaternion);
             ReactiveQuaternion.Subscribe(q => {
