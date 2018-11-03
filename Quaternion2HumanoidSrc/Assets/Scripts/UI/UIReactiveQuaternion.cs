@@ -12,11 +12,7 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
         [SerializeField] Text yawText;
 
         Quaternion defaultQuaternion = Quaternion.identity;
-        public void SetDefaultQuaternion(Quaternion quaternion) {
-            sliderW.Slider.value = quaternion.w;
-            sliderX.Slider.value = quaternion.x;
-            sliderY.Slider.value = quaternion.y;
-            sliderZ.Slider.value = quaternion.z;
+        public override void SetDefaultQuaternion(Quaternion quaternion) {
             defaultQuaternion = quaternion;
         }
 
