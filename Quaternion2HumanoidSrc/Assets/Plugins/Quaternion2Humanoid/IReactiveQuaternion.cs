@@ -13,7 +13,7 @@ namespace Quaternion2Humanoid {
         IReadOnlyReactiveProperty<Quaternion> ReactiveQuaternion { get; }
     }
 
-    public class ChainedReactiveQuaternion : IOverwritableReactiveQuaternion {
+    public class ChainedReactiveQuaternion : IReactiveQuaternion {
         readonly IOverwritableReactiveQuaternion mine;
 
         public ChainedReactiveQuaternion(IOverwritableReactiveQuaternion mine) { this.mine = mine; }
@@ -37,8 +37,6 @@ namespace Quaternion2Humanoid {
                        });
         }
 
-        public void OverwriteQuaternion(Quaternion quaternion) { mine.OverwriteQuaternion(quaternion); }
-        public void SetDefaultQuaternion(Quaternion quaternion) { mine.SetDefaultQuaternion(quaternion); }
         public IReadOnlyReactiveProperty<Quaternion> ReactiveQuaternion { get { return mine.ReactiveQuaternion; } }
     }
 }
