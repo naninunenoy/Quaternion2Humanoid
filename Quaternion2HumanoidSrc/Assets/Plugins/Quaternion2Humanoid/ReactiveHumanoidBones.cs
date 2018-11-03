@@ -29,7 +29,7 @@ namespace Quaternion2Humanoid {
             return source.Subscribe(q => {
                 var boneTrans = bonesTransformDict[to];
                 if (boneTrans != null) {
-                    boneTrans.localRotation = q;
+                    boneTrans.rotation = q;
                     reactiveBones.Value = new BoneQaternion(to, q);
                 }
             });
@@ -39,7 +39,7 @@ namespace Quaternion2Humanoid {
             return source.Subscribe(q => {
                 var boneTrans = bonesTransformDict[to];
                 if (boneTrans != null) {
-                    boneTrans.rotation = q;
+                    boneTrans.localRotation = q;
                     reactiveBones.Value = new BoneQaternion(to, q);
                 }
             });

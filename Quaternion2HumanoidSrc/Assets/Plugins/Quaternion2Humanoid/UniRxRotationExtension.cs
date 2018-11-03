@@ -8,7 +8,7 @@ namespace Quaternion2Humanoid {
             return source.SubscribeWithState(transform, (x, t) => t.rotation = x);
         }
         public static IDisposable SubscribeToLocalRotation(this IObservable<Quaternion> source, Transform transform) {
-            return source.SubscribeWithState(transform, (x, t) => t.rotation = x);
+            return source.SubscribeWithState(transform, (x, t) => t.localRotation = x);
         }
     }
 }
