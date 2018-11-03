@@ -742,6 +742,62 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 163.496
       objectReference: {fileID: 0}
+    - target: {fileID: 1418681020697604, guid: efd35a32775a34e64b5dce647e4c48c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056057512161142, guid: efd35a32775a34e64b5dce647e4c48c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414901547250614, guid: efd35a32775a34e64b5dce647e4c48c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1668211151598600, guid: efd35a32775a34e64b5dce647e4c48c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1099823647087148, guid: efd35a32775a34e64b5dce647e4c48c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702466604573296, guid: efd35a32775a34e64b5dce647e4c48c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966470909469618, guid: efd35a32775a34e64b5dce647e4c48c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667948802259876, guid: efd35a32775a34e64b5dce647e4c48c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272823944862020, guid: efd35a32775a34e64b5dce647e4c48c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1048942211343858, guid: efd35a32775a34e64b5dce647e4c48c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670371315968766, guid: efd35a32775a34e64b5dce647e4c48c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1709245974861170, guid: efd35a32775a34e64b5dce647e4c48c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1156811172239188, guid: efd35a32775a34e64b5dce647e4c48c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1050269634576700, guid: efd35a32775a34e64b5dce647e4c48c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efd35a32775a34e64b5dce647e4c48c9, type: 3}
 --- !u!114 &887034748 stripped

@@ -25,6 +25,8 @@ namespace Quaternion2Humanoid {
             }
         }
 
+        public Transform GetTransfrom(HumanBodyBones bone) { return bonesTransformDict[bone]; }
+
         public IDisposable SubscribeAsGlobalQuaternionTo(HumanBodyBones to, IObservable<Quaternion> source) {
             return source.Subscribe(q => {
                 var boneTrans = bonesTransformDict[to];
