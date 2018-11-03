@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UniRx;
 using Quaternion2Humanoid;
+using Assets.Quaternion2Humanoid.Scripts.UI;
 
 namespace Assets.Quaternion2Humanoid.Scripts {
     public class HumanoidBodyMain : MonoBehaviour {
