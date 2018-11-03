@@ -6,10 +6,14 @@ using Quaternion2Humanoid;
 
 namespace Assets.Quaternion2Humanoid.Scripts.UI {
     public class QuaternionSliders : MonoBehaviour, IOverwritableReactiveQuaternion {
-        [SerializeField] ValueSlider sliderW;
-        [SerializeField] ValueSlider sliderX;
-        [SerializeField] ValueSlider sliderY;
-        [SerializeField] ValueSlider sliderZ;
+        [SerializeField]
+        protected ValueSlider sliderW;
+        [SerializeField]
+        protected ValueSlider sliderX;
+        [SerializeField]
+        protected ValueSlider sliderY;
+        [SerializeField]
+        protected ValueSlider sliderZ;
 
         bool isLockReactiveQuaternion = true;
         ReactiveProperty<Quaternion> reactiveQuaternion = new ReactiveProperty<Quaternion>();
@@ -38,7 +42,7 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
             isLockReactiveQuaternion = true;
         }
 
-        private void SetQuaternionToSliders(Quaternion quaternion) {
+        protected void SetQuaternionToSliders(Quaternion quaternion) {
             sliderW.Slider.value = quaternion.w;
             sliderX.Slider.value = quaternion.x;
             sliderY.Slider.value = quaternion.y;
