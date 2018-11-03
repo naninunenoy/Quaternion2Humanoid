@@ -31,7 +31,7 @@ namespace Assets.Quaternion2Humanoid.Scripts {
             // observe update bone rotaion
             humanoidBones.ReactiveBones.Subscribe(
                 bone => {
-                    Debug.LogFormat("{0} : q={1}", bone.Bone, bone.Quaternion);
+                    //Debug.LogFormat("{0} : q={1}", bone.Bone, bone.Quaternion);
                 }
             ).AddTo(this);
             // load scene event

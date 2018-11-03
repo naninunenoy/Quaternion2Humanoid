@@ -49,21 +49,7 @@ namespace Assets.Quaternion2Humanoid.Scripts {
                 }
             }
             // UIReactiveQuaternioの有効化
-            rootQuat.Validate();
-            chestQuat.Validate();
-            neckQuat.Validate();
-            leftUpperArmQuat.Validate();
-            leftArmQuat.Validate();
-            leftHandQuat.Validate();
-            rightUpperArmQuat.Validate();
-            rightArmQuat.Validate();
-            rightHandQuat.Validate();
-            leftThighQuat.Validate();
-            leftShinQuat.Validate();
-            leftFootQuat.Validate();
-            rightThighQuat.Validate();
-            rightShinQuat.Validate();
-            rightFootQuat.Validate();
+            AllQuats.ForEach(x => x.Validate());
         }
 
         void Start() {
@@ -132,27 +118,25 @@ namespace Assets.Quaternion2Humanoid.Scripts {
             // observe bone rotaion update
             humanoidBones.ReactiveBones.Subscribe(
                 bone => {
-                    Debug.LogFormat("{0} : q={1}", bone.Bone, bone.Quaternion);
+                    //Debug.LogFormat("{0} : q={1}", bone.Bone, bone.Quaternion);
                 }
             ).AddTo(this);
             // load scene event
             leftArmSceneButton.onClick.AddListener(() => { SceneManager.LoadScene("RightArmScene"); });
             // validate auto slider update
-            rootQuat.ValidateAutoUpdate(this);
-            chestQuat.ValidateAutoUpdate(this);
-            neckQuat.ValidateAutoUpdate(this);
-            leftUpperArmQuat.ValidateAutoUpdate(this);
-            leftArmQuat.ValidateAutoUpdate(this);
-            leftHandQuat.ValidateAutoUpdate(this);
-            rightUpperArmQuat.ValidateAutoUpdate(this);
-            rightArmQuat.ValidateAutoUpdate(this);
-            rightHandQuat.ValidateAutoUpdate(this);
-            leftThighQuat.ValidateAutoUpdate(this);
-            leftShinQuat.ValidateAutoUpdate(this);
-            leftFootQuat.ValidateAutoUpdate(this);
-            rightThighQuat.ValidateAutoUpdate(this);
-            rightShinQuat.ValidateAutoUpdate(this);
-            rightFootQuat.ValidateAutoUpdate(this);
+            AllQuats.ForEach(x => x.ValidateAutoUpdate(this));
+        }
+
+        List<UIReactiveQuaternion> AllQuats {
+            get {
+                return new List<UIReactiveQuaternion> {
+                    rootQuat, chestQuat, neckQuat,
+                    leftUpperArmQuat, leftArmQuat, leftHandQuat,
+                    rightUpperArmQuat, rightArmQuat, rightHandQuat,
+                    leftThighQuat, leftShinQuat, leftFootQuat,
+                    rightThighQuat, rightShinQuat, rightFootQuat
+                };
+            }
         }
     }
 }
