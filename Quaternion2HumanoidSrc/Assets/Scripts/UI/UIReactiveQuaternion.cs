@@ -18,8 +18,8 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
 
         public void InitQuaternion() { SetQuaternionToSliders(defaultQuaternion); }
 
-        protected override void Awake() {
-            base.Awake();
+        public override void Validate() {
+            base.Validate();
             // リセットボタン
             resetButton.onClick.AddListener(InitQuaternion);
             SliderQuaternion.Subscribe(q => {

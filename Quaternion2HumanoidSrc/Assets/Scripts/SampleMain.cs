@@ -13,6 +13,10 @@ namespace Assets.Quaternion2Humanoid.Scripts {
         [SerializeField] UIReactiveQuaternion reactiveQuaternion;
         [SerializeField] Button humanoidSceneButton;
 
+        void Awake() {
+            reactiveQuaternion.Validate();
+        }
+
         void Start() {
             reactiveQuaternion.ReactiveQuaternion.SubscribeToLocalRotation(mainObjectTransform).AddTo(this);
             // load scene event

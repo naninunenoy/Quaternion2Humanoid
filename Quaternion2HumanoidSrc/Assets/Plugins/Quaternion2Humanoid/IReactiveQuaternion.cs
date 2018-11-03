@@ -6,6 +6,7 @@ using UniRx;
 
 namespace Quaternion2Humanoid {
     public interface IOverwritableReactiveQuaternion : IReactiveQuaternion {
+        void Validate();
         void OverwriteQuaternion(Quaternion quaternion);
         void SetDefaultQuaternion(Quaternion quaternion);
     }

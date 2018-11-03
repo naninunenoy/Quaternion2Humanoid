@@ -15,6 +15,11 @@ namespace Assets.Quaternion2Humanoid.Scripts {
         [SerializeField] Button sampleSceneButton;
         [SerializeField] Button humanoidSceneButton;
 
+        void Awake() {
+            rightUpperArmReactiveQuaternion.Validate();
+            rightLowerArmReactiveQuaternion.Validate();
+        }
+
         void Start() {
             var world2RightArm = humanoidBones.GetTransfrom(HumanBodyBones.RightUpperArm).rotation;
             // rotation of lowerArm depends on rotation of upperArm

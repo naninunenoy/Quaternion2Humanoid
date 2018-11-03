@@ -48,6 +48,22 @@ namespace Assets.Quaternion2Humanoid.Scripts {
                     t.onValueChanged.AddListener(p.gameObject.SetActive);
                 }
             }
+            // UIReactiveQuaternioの有効化
+            rootQuat.Validate();
+            chestQuat.Validate();
+            neckQuat.Validate();
+            leftUpperArmQuat.Validate();
+            leftArmQuat.Validate();
+            leftHandQuat.Validate();
+            rightUpperArmQuat.Validate();
+            rightArmQuat.Validate();
+            rightHandQuat.Validate();
+            leftThighQuat.Validate();
+            leftShinQuat.Validate();
+            leftFootQuat.Validate();
+            rightThighQuat.Validate();
+            rightShinQuat.Validate();
+            rightFootQuat.Validate();
         }
 
         void Start() {
@@ -116,7 +132,7 @@ namespace Assets.Quaternion2Humanoid.Scripts {
             // observe bone rotaion update
             humanoidBones.ReactiveBones.Subscribe(
                 bone => {
-                    //Debug.LogFormat("{0} : q={1}", bone.Bone, bone.Quaternion);
+                    Debug.LogFormat("{0} : q={1}", bone.Bone, bone.Quaternion);
                 }
             ).AddTo(this);
             // load scene event
