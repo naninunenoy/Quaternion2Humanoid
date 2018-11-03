@@ -20,8 +20,8 @@ namespace Assets.Quaternion2Humanoid.Scripts {
             var upperArmQuaternion = rightUpperArmReactiveQuaternion;
             var lowerArmQuaternion = new ChainedReactiveQuaternion(rightLowerArmReactiveQuaternion);
             lowerArmQuaternion.ChainToParent(upperArmQuaternion);
-            humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.LeftUpperArm, upperArmQuaternion.ReactiveQuaternion).AddTo(this);
-            humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.LeftLowerArm, lowerArmQuaternion.ReactiveQuaternion).AddTo(this);
+            humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.RightUpperArm, upperArmQuaternion.ReactiveQuaternion).AddTo(this);
+            humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.RightLowerArm, lowerArmQuaternion.ReactiveQuaternion).AddTo(this);
             // observe update bone rotaion
             humanoidBones.ReactiveBones.Subscribe(
                 bone => {
