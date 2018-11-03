@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,7 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
         float max;
         float min;
         float val;
+        IDisposable auotUpdate;
 
         void Awake() {
             max = slider.Slider.maxValue;
@@ -27,18 +29,22 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
         }
 
         public void StartAutoUpdate(Component addto) {
-            Observable.EveryUpdate()
-                      .Where(_ => toggle != null && toggle.isOn)
-                      .Subscribe(_ => {
-                          if (state == State.Add) {
-                              val = Mathf.Min(val + speed, max);
-                              state = (val >= max) ? State.Dec : state; // 減らすに切り替え
-                          } else {
-                              val = Mathf.Max(val - speed, min);
-                              state = (val <= min) ? State.Add : state; // 増やすに切り替え
-                          }
-                          slider.Slider.value = val;
-                      }).AddTo(addto ?? this);
+            if (auotUpdate != null) {
+                auotUpdate.Dispose();
+                auotUpdate = null;
+            }
+            auotUpdate = Observable.EveryUpdate()
+                                   .Where(_ => toggle != null && toggle.isOn)
+                                   .Subscribe(_ => {
+                                       if (state == State.Add) {
+                                           val = Mathf.Min(val + speed, max);
+                                           state = (val >= max) ? State.Dec : state; // 減らすに切り替え
+                                       } else {
+                                           val = Mathf.Max(val - speed, min);
+                                           state = (val <= min) ? State.Add : state; // 増やすに切り替え
+                                       }
+                                       slider.Slider.value = val;
+                                   }).AddTo(addto ?? this);
         }
     }
 }

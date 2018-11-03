@@ -33,6 +33,8 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
                 reactiveQuaternion.Value = quat;
                 OverwriteQuaternion(quat);
             }).AddTo(this);
+            // 自動更新可能に
+            ValidateAutoUpdate(this);
         }
 
         public void OverwriteQuaternion(Quaternion quaternion) {
