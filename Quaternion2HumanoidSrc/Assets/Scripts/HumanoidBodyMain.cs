@@ -37,7 +37,7 @@ namespace Assets.Quaternion2Humanoid.Scripts {
                                     .Select(t => t.GetComponent<Toggle>()).ToArray();
             var panels = Enumerable.Range(0, panelParent.childCount)
                                    .Select(i => panelParent.GetChild(i))
-                                   .Select(t => t.GetComponent<Transform>()).ToArray();;
+                                   .Select(t => t.GetComponent<Transform>()).ToArray();
             if (toggles.Length == panels.Length) {
                 var len = toggles.Length;
                 // toggleのon/offでパネルを切り替える
