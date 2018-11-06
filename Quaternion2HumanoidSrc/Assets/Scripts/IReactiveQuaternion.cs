@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UniRx;
 
-namespace Quaternion2Humanoid {
+namespace Assets.Quaternion2Humanoid.Scripts {
     public interface IOverwritableReactiveQuaternion : IReactiveQuaternion {
         void Validate();
         void OverwriteQuaternion(Quaternion quaternion);
