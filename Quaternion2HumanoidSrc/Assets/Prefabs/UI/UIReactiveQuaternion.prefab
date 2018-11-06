@@ -1,5 +1,27 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &6063559169136651997 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5029635876193595264, guid: e5b9fd840a8602b46bea4b2b55d9c8c9, type: 3}
+  m_PrefabInstance: {fileID: 1291070597784633693}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f06365654da554d0da21b8df6034a0b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &195827209032499436 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1395405674453303729, guid: e5b9fd840a8602b46bea4b2b55d9c8c9, type: 3}
+  m_PrefabInstance: {fileID: 1291070597784633693}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f06365654da554d0da21b8df6034a0b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &195827208786818889 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1395405674497685012, guid: e5b9fd840a8602b46bea4b2b55d9c8c9, type: 3}
@@ -22,17 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f06365654da554d0da21b8df6034a0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &195827209032499436 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1395405674453303729, guid: e5b9fd840a8602b46bea4b2b55d9c8c9, type: 3}
+--- !u!224 &6063559168446181044 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5029635875775688681, guid: e5b9fd840a8602b46bea4b2b55d9c8c9, type: 3}
   m_PrefabInstance: {fileID: 1291070597784633693}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f06365654da554d0da21b8df6034a0b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1291070596747889096
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,7 +126,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u623B\u3059"
+  m_Text: reset
 --- !u!1 &1291070596827896503
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,7 +319,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5EA7\u6A19\u7CFB"
+  m_Text: Axis
 --- !u!1 &1291070597166320965
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,22 +713,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "-360.0\xB0"
---- !u!224 &6063559168446181044 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5029635875775688681, guid: e5b9fd840a8602b46bea4b2b55d9c8c9, type: 3}
-  m_PrefabInstance: {fileID: 1291070597784633693}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6063559169136651997 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5029635876193595264, guid: e5b9fd840a8602b46bea4b2b55d9c8c9, type: 3}
-  m_PrefabInstance: {fileID: 1291070597784633693}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f06365654da554d0da21b8df6034a0b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1291070597784633693
 PrefabInstance:
   m_ObjectHideFlags: 0

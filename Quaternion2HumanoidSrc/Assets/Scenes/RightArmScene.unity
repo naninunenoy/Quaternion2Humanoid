@@ -1335,7 +1335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1291070597004579157, guid: dfd224c3d95a40c4c975cb2e5c96226b, type: 3}
       propertyPath: m_Text
-      value: "\u53F3\u4E0A\u8155"
+      value: RightUpperArm
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfd224c3d95a40c4c975cb2e5c96226b, type: 3}
@@ -1593,7 +1593,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1291070597004579157, guid: dfd224c3d95a40c4c975cb2e5c96226b, type: 3}
       propertyPath: m_Text
-      value: "\u53F3\u524D\u8155"
+      value: RightLowerArm
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfd224c3d95a40c4c975cb2e5c96226b, type: 3}
