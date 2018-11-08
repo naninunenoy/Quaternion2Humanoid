@@ -33,8 +33,10 @@ namespace Assets.Quaternion2Humanoid.Scripts {
             parentQuats.Select(x => x.AsObservable())
                        .CombineLatest()
                        .Subscribe(quats => {
-                           var q = quats.Aggregate((q0, q1) => { return q0 * q1; });
-                           mine.OverwriteQuaternion(q);
+                           var parentQuat = quats.Take(quats.Count - 1).Aggregate((q0, q1) => { return q0 * q1; });
+                           mine.SetDefaultQuaternion(parentQuat);
+                           var myQuat = quats.Aggregate((q0, q1) => { return q0 * q1; });
+                           mine.OverwriteQuaternion(myQuat);
                        });
         }
 
