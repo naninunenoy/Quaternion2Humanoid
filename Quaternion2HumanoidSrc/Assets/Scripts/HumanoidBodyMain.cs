@@ -49,7 +49,7 @@ namespace Assets.Quaternion2Humanoid.Scripts {
                 }
             }
             // UIReactiveQuaternioの有効化
-            AllQuats.ForEach(x => x.Validate());
+            AllQuats.ForEach(x => x.Validate(this));
         }
 
         void Start() {
@@ -125,8 +125,6 @@ namespace Assets.Quaternion2Humanoid.Scripts {
             ).AddTo(this);
             // load scene event
             leftArmSceneButton.onClick.AddListener(() => { SceneManager.LoadScene("RightArmScene"); });
-            // validate auto slider update
-            AllQuats.ForEach(x => x.ValidateAutoUpdate(this));
         }
 
         List<UIReactiveQuaternion> AllQuats {

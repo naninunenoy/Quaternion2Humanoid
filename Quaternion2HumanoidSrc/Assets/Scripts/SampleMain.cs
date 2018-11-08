@@ -14,15 +14,13 @@ namespace Assets.Quaternion2Humanoid.Scripts {
         [SerializeField] Button humanoidSceneButton;
 
         void Awake() {
-            reactiveQuaternion.Validate();
+            reactiveQuaternion.Validate(this);
         }
 
         void Start() {
             reactiveQuaternion.ReactiveQuaternion.SubscribeToLocalRotation(mainObjectTransform).AddTo(this);
             // load scene event
             humanoidSceneButton.onClick.AddListener(() => { SceneManager.LoadScene("RightArmScene"); });
-            // validate auto slider update
-            reactiveQuaternion.ValidateAutoUpdate(this);
         }
     }
 }

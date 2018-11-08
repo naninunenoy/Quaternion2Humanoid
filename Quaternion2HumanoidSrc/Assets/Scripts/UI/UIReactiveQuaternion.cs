@@ -18,8 +18,8 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
 
         public void InitQuaternion() { SetQuaternionToSliders(defaultQuaternion); }
 
-        public override void Validate() {
-            base.Validate();
+        public override void Validate(Component comp) {
+            base.Validate(comp);
             // リセットボタン
             resetButton.onClick.AddListener(InitQuaternion);
             SliderQuaternion.Subscribe(q => {
@@ -27,7 +27,7 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
                 rollText.text = string.Format("{0:F1}°", euler.x);
                 pitchText.text = string.Format("{0:F1}°", euler.y);
                 yawText.text = string.Format("{0:F1}°", euler.z);
-            }).AddTo(this);
+            }).AddTo(comp);
         }
     }
 }

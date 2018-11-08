@@ -16,8 +16,8 @@ namespace Assets.Quaternion2Humanoid.Scripts {
         [SerializeField] Button humanoidSceneButton;
 
         void Awake() {
-            rightUpperArmReactiveQuaternion.Validate();
-            rightLowerArmReactiveQuaternion.Validate();
+            rightUpperArmReactiveQuaternion.Validate(this);
+            rightLowerArmReactiveQuaternion.Validate(this);
         }
 
         void Start() {
@@ -37,9 +37,6 @@ namespace Assets.Quaternion2Humanoid.Scripts {
             // load scene event
             sampleSceneButton.onClick.AddListener(() => { SceneManager.LoadScene("SampleScene"); });
             humanoidSceneButton.onClick.AddListener(() => { SceneManager.LoadScene("HumanoidBodyScene"); });
-            // validate auto slider update
-            rightUpperArmReactiveQuaternion.ValidateAutoUpdate(this);
-            rightLowerArmReactiveQuaternion.ValidateAutoUpdate(this);
         }
     }
 }

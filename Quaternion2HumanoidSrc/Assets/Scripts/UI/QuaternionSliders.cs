@@ -19,15 +19,15 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
         ReactiveProperty<Quaternion> reactiveQuaternion = new ReactiveProperty<Quaternion>();
         public IReadOnlyReactiveProperty<Quaternion> ReactiveQuaternion { get { return reactiveQuaternion; } }
 
-        public virtual void Validate() {
+        public virtual void Validate(Component comp) {
             // sliderによるQuaternion更新を通知
             SliderQuaternion.Where(_ => { return !isLockReactiveQuaternion; })
                             .Subscribe(quat => {
                                 reactiveQuaternion.Value = quat;
                                 OverwriteQuaternion(quat);
-                            }).AddTo(this);
+                            }).AddTo(comp);
             // 自動更新可能に
-            ValidateAutoUpdate(this);
+            ValidateAutoUpdate(comp);
         }
 
         protected IObservable<Quaternion> SliderQuaternion {
