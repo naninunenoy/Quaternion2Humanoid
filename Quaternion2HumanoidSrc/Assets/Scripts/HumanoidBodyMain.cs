@@ -60,9 +60,9 @@ namespace Assets.Quaternion2Humanoid.Scripts {
             var neck = new ChainedReactiveQuaternion(neckQuat);
             neck.ChainToParents(root, spine);
             var world2Boby = humanoidBones.GetTransfrom(HumanBodyBones.Hips).rotation;
-            humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.Hips, root.ReactiveQuaternion.ToRelativedQuaternionObservable(world2Boby)).AddTo(this);
-            humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.Spine, spine.ReactiveQuaternion.ToRelativedQuaternionObservable(world2Boby)).AddTo(this);
-            humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.Neck, neck.ReactiveQuaternion.ToRelativedQuaternionObservable(world2Boby)).AddTo(this);
+            humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.Hips, root.ReactiveQuaternion.ToRelativeQuaternionObservable(world2Boby)).AddTo(this);
+            humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.Spine, spine.ReactiveQuaternion.ToRelativeQuaternionObservable(world2Boby)).AddTo(this);
+            humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.Neck, neck.ReactiveQuaternion.ToRelativeQuaternionObservable(world2Boby)).AddTo(this);
             // leftArm
             {
                 var upperArm = new ChainedReactiveQuaternion(leftUpperArmQuat);
@@ -72,9 +72,9 @@ namespace Assets.Quaternion2Humanoid.Scripts {
                 var hand = new ChainedReactiveQuaternion(leftHandQuat);
                 hand.ChainToParents(root, spine, upperArm, lowerArm);
                 var world2LeftArm = humanoidBones.GetTransfrom(HumanBodyBones.LeftUpperArm).rotation;
-                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.LeftUpperArm, upperArm.ReactiveQuaternion.ToRelativedQuaternionObservable(world2LeftArm)).AddTo(this);
-                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.LeftLowerArm, lowerArm.ReactiveQuaternion.ToRelativedQuaternionObservable(world2LeftArm)).AddTo(this);
-                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.LeftHand, hand.ReactiveQuaternion.ToRelativedQuaternionObservable(world2LeftArm)).AddTo(this);
+                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.LeftUpperArm, upperArm.ReactiveQuaternion.ToRelativeQuaternionObservable(world2LeftArm)).AddTo(this);
+                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.LeftLowerArm, lowerArm.ReactiveQuaternion.ToRelativeQuaternionObservable(world2LeftArm)).AddTo(this);
+                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.LeftHand, hand.ReactiveQuaternion.ToRelativeQuaternionObservable(world2LeftArm)).AddTo(this);
             }
             // rightArm
             {
@@ -85,9 +85,9 @@ namespace Assets.Quaternion2Humanoid.Scripts {
                 var hand = new ChainedReactiveQuaternion(rightHandQuat);
                 hand.ChainToParents(root, spine, upperArm, lowerArm);
                 var world2RightArm = humanoidBones.GetTransfrom(HumanBodyBones.RightUpperArm).rotation;
-                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.RightUpperArm, upperArm.ReactiveQuaternion.ToRelativedQuaternionObservable(world2RightArm)).AddTo(this);
-                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.RightLowerArm, lowerArm.ReactiveQuaternion.ToRelativedQuaternionObservable(world2RightArm)).AddTo(this);
-                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.RightHand, hand.ReactiveQuaternion.ToRelativedQuaternionObservable(world2RightArm)).AddTo(this);
+                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.RightUpperArm, upperArm.ReactiveQuaternion.ToRelativeQuaternionObservable(world2RightArm)).AddTo(this);
+                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.RightLowerArm, lowerArm.ReactiveQuaternion.ToRelativeQuaternionObservable(world2RightArm)).AddTo(this);
+                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.RightHand, hand.ReactiveQuaternion.ToRelativeQuaternionObservable(world2RightArm)).AddTo(this);
             }
             // leftLeg
             {
@@ -99,9 +99,9 @@ namespace Assets.Quaternion2Humanoid.Scripts {
                 foot.ChainToParents(root, spine, upperLeg, lowerLeg);
                 var world2LeftLeg = humanoidBones.GetTransfrom(HumanBodyBones.LeftUpperLeg).rotation;
                 var world2LeftFoot = humanoidBones.GetTransfrom(HumanBodyBones.LeftFoot).rotation;
-                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.LeftUpperLeg, upperLeg.ReactiveQuaternion.ToRelativedQuaternionObservable(world2LeftLeg)).AddTo(this);
-                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.LeftLowerLeg, lowerLeg.ReactiveQuaternion.ToRelativedQuaternionObservable(world2LeftLeg)).AddTo(this);
-                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.LeftFoot, foot.ReactiveQuaternion.ToRelativedQuaternionObservable(world2LeftFoot)).AddTo(this);
+                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.LeftUpperLeg, upperLeg.ReactiveQuaternion.ToRelativeQuaternionObservable(world2LeftLeg)).AddTo(this);
+                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.LeftLowerLeg, lowerLeg.ReactiveQuaternion.ToRelativeQuaternionObservable(world2LeftLeg)).AddTo(this);
+                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.LeftFoot, foot.ReactiveQuaternion.ToRelativeQuaternionObservable(world2LeftFoot)).AddTo(this);
             }
             // rightLeg
             {
@@ -113,9 +113,9 @@ namespace Assets.Quaternion2Humanoid.Scripts {
                 foot.ChainToParents(root, spine, upperLeg, lowerLeg);
                 var world2RightLeg = humanoidBones.GetTransfrom(HumanBodyBones.RightUpperLeg).rotation;
                 var world2RightFoot = humanoidBones.GetTransfrom(HumanBodyBones.RightFoot).rotation;
-                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.RightUpperLeg, upperLeg.ReactiveQuaternion.ToRelativedQuaternionObservable(world2RightLeg)).AddTo(this);
-                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.RightLowerLeg, lowerLeg.ReactiveQuaternion.ToRelativedQuaternionObservable(world2RightLeg)).AddTo(this);
-                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.RightFoot, foot.ReactiveQuaternion.ToRelativedQuaternionObservable(world2RightFoot)).AddTo(this);
+                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.RightUpperLeg, upperLeg.ReactiveQuaternion.ToRelativeQuaternionObservable(world2RightLeg)).AddTo(this);
+                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.RightLowerLeg, lowerLeg.ReactiveQuaternion.ToRelativeQuaternionObservable(world2RightLeg)).AddTo(this);
+                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.RightFoot, foot.ReactiveQuaternion.ToRelativeQuaternionObservable(world2RightFoot)).AddTo(this);
             }
             // observe bone rotaion update
             humanoidBones.ReactiveBones.Subscribe(
