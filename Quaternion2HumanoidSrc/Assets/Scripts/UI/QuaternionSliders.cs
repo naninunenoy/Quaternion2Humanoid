@@ -22,10 +22,10 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
         public virtual void Validate(Component comp) {
             // sliderによるQuaternion更新を通知
             SliderQuaternion.Where(_ => { return !isLockReactiveQuaternion; })
-                            .Subscribe(quat => {
-                                reactiveQuaternion.Value = quat;
-                                OverwriteQuaternion(quat);
-                            }).AddTo(comp);
+                            .Subscribe(quaternion => {
+                                OverwriteQuaternion(quaternion, true);
+                            })
+                            .AddTo(comp);
             // 自動更新可能に
             ValidateAutoUpdate(comp);
         }
@@ -41,22 +41,24 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
             }
         }
 
-        public void OverwriteQuaternion(Quaternion quaternion) {
-            // scriptからの上書きはReactivePropertyとして通知しない
-            isLockReactiveQuaternion = true;
+        public void OverwriteQuaternion(Quaternion quaternion, bool notify = true) {
+            if (notify) {
+                reactiveQuaternion.Value = quaternion;
+            }
             SetQuaternionToSliders(quaternion);
-            isLockReactiveQuaternion = false;
         }
 
         public virtual void SetDefaultQuaternion(Quaternion quaternion) {
-            OverwriteQuaternion(Quaternion.identity);
+            OverwriteQuaternion(Quaternion.identity, true);
         }
 
         protected void SetQuaternionToSliders(Quaternion quaternion) {
+            isLockReactiveQuaternion = true;
             sliderW.Slider.value = quaternion.w;
             sliderX.Slider.value = quaternion.x;
             sliderY.Slider.value = quaternion.y;
             sliderZ.Slider.value = quaternion.z;
+            isLockReactiveQuaternion = false;
         }
 
         public void ValidateAutoUpdate(Component addto) {

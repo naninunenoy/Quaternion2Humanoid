@@ -7,7 +7,7 @@ using UniRx;
 namespace Assets.Quaternion2Humanoid.Scripts {
     public interface IOverwritableReactiveQuaternion : IReactiveQuaternion {
         void Validate(Component comp);
-        void OverwriteQuaternion(Quaternion quaternion);
+        void OverwriteQuaternion(Quaternion quaternion, bool notify);
         void SetDefaultQuaternion(Quaternion quaternion);
     }
     public interface IReactiveQuaternion {
@@ -23,7 +23,7 @@ namespace Assets.Quaternion2Humanoid.Scripts {
             Observable.CombineLatest(parent.ReactiveQuaternion, mine.ReactiveQuaternion)
                       .Subscribe(quats => {
                           mine.SetDefaultQuaternion(quats[0]);
-                          mine.OverwriteQuaternion(quats[0] * quats[1]);
+                          mine.OverwriteQuaternion(quats[0] * quats[1], false);
                       });
         }
 
@@ -36,7 +36,7 @@ namespace Assets.Quaternion2Humanoid.Scripts {
                            var parentQuat = quats.Take(quats.Count - 1).Aggregate((q0, q1) => { return q0 * q1; });
                            mine.SetDefaultQuaternion(parentQuat);
                            var myQuat = quats.Aggregate((q0, q1) => { return q0 * q1; });
-                           mine.OverwriteQuaternion(myQuat);
+                           mine.OverwriteQuaternion(myQuat, false);
                        });
         }
 

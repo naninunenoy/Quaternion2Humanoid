@@ -16,7 +16,7 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
             defaultQuaternion = quaternion;
         }
 
-        public void InitQuaternion() { SetQuaternionToSliders(defaultQuaternion); }
+        public void InitQuaternion() { OverwriteQuaternion(defaultQuaternion, true); }
 
         public override void Validate(Component comp) {
             base.Validate(comp);
