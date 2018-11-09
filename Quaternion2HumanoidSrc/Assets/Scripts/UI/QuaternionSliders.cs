@@ -20,6 +20,10 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
         public IReadOnlyReactiveProperty<Quaternion> ReactiveQuaternion { get { return reactiveQuaternion; } }
 
         public virtual void Validate(Component comp) {
+            sliderW.Validate(comp);
+            sliderX.Validate(comp);
+            sliderY.Validate(comp);
+            sliderZ.Validate(comp);
             // sliderによるQuaternion更新を通知
             SliderQuaternion.Where(_ => { return !isLockReactiveQuaternion; })
                             .Subscribe(quaternion => {
@@ -36,8 +40,8 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
                     sliderW.ReactiveValue,
                     sliderX.ReactiveValue,
                     sliderY.ReactiveValue,
-                    sliderZ.ReactiveValue)
-                    .Select(vals => { return new Quaternion(vals[1], vals[2], vals[3], vals[0]).normalized; });
+                    sliderZ.ReactiveValue
+                ).Select(vals => { return new Quaternion(vals[1], vals[2], vals[3], vals[0]).normalized; });
             }
         }
 
@@ -61,7 +65,7 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
             isLockReactiveQuaternion = false;
         }
 
-        public void ValidateAutoUpdate(Component addto) {
+        private void ValidateAutoUpdate(Component addto) {
             ValidateAutoUpdateSafe(sliderW.GetComponent<ValueAutoUpdater>(), addto);
             ValidateAutoUpdateSafe(sliderX.GetComponent<ValueAutoUpdater>(), addto);
             ValidateAutoUpdateSafe(sliderY.GetComponent<ValueAutoUpdater>(), addto);
