@@ -7,7 +7,7 @@ using UniRx;
 namespace Assets.Quaternion2Humanoid.Scripts {
     public interface IOverwritableReactiveQuaternion : IReactiveQuaternion {
         void Validate(Component comp);
-        void OverwriteQuaternion(Quaternion quaternion, bool notify);
+        void OverwriteQuaternion(Quaternion quaternion);
         void SetDefaultQuaternion(Quaternion quaternion);
     }
     public interface IReactiveQuaternion {
@@ -20,23 +20,19 @@ namespace Assets.Quaternion2Humanoid.Scripts {
         public ChainedReactiveQuaternion(IOverwritableReactiveQuaternion mine) { this.mine = mine; }
 
         public void ChainToParent(IReactiveQuaternion parent) {
-            Observable.CombineLatest(parent.ReactiveQuaternion, mine.ReactiveQuaternion)
-                      .Subscribe(quats => {
-                          mine.SetDefaultQuaternion(quats[0]);
-                          mine.OverwriteQuaternion(quats[0] * quats[1], false);
-                      });
+            parent.ReactiveQuaternion
+                  .Subscribe(q => {
+                      mine.SetDefaultQuaternion(q);
+                  });
         }
 
         public void ChainToParents(params IReactiveQuaternion[] parents) {
-            var parentQuats = parents.Select(x => x.ReactiveQuaternion)
-                                     .Concat(new IReadOnlyReactiveProperty<Quaternion>[] { mine.ReactiveQuaternion });
+            var parentQuats = parents.Select(x => x.ReactiveQuaternion);
             parentQuats.Select(x => x.AsObservable())
                        .CombineLatest()
                        .Subscribe(quats => {
-                           var parentQuat = quats.Take(quats.Count - 1).Aggregate((q0, q1) => { return q0 * q1; });
+                           var parentQuat = quats.Aggregate((q0, q1) => { return q0 * q1; });
                            mine.SetDefaultQuaternion(parentQuat);
-                           var myQuat = quats.Aggregate((q0, q1) => { return q0 * q1; });
-                           mine.OverwriteQuaternion(myQuat, false);
                        });
         }
 

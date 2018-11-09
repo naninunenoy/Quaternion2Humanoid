@@ -5,18 +5,21 @@ using UnityEngine.UI;
 using UniRx;
 
 namespace Assets.Quaternion2Humanoid.Scripts.UI {
-    public class UIReactiveQuaternion : QuaternionSliders {
+    public class UIReactiveQuaternion : QuaternionSliders, IOverwritableReactiveQuaternion {
         [SerializeField] Button resetButton;
         [SerializeField] Text rollText;
         [SerializeField] Text pitchText;
         [SerializeField] Text yawText;
 
         Quaternion defaultQuaternion = Quaternion.identity;
-        public override void SetDefaultQuaternion(Quaternion quaternion) {
+        public void SetDefaultQuaternion(Quaternion quaternion) {
             defaultQuaternion = quaternion;
+            SetQuaternion(defaultQuaternion * GetQuaternion());//!
         }
 
-        public void InitQuaternion() { OverwriteQuaternion(defaultQuaternion, true); }
+        public void InitQuaternion() { SetQuaternion(defaultQuaternion); }
+
+        public void OverwriteQuaternion(Quaternion quaternion) { SetQuaternion(quaternion); }
 
         public override void Validate(Component comp) {
             base.Validate(comp);

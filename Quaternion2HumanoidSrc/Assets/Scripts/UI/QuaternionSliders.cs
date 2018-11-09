@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
-using Quaternion2Humanoid;
 
 namespace Assets.Quaternion2Humanoid.Scripts.UI {
-    public class QuaternionSliders : MonoBehaviour, IOverwritableReactiveQuaternion {
+    public class QuaternionSliders : MonoBehaviour {
         [SerializeField]
         protected ValueSlider sliderW;
         [SerializeField]
@@ -26,9 +25,7 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
             sliderZ.Validate(comp);
             // sliderによるQuaternion更新を通知
             SliderQuaternion.Where(_ => { return !isLockReactiveQuaternion; })
-                            .Subscribe(quaternion => {
-                                OverwriteQuaternion(quaternion, true);
-                            })
+                            .Subscribe(SetQuaternion)
                             .AddTo(comp);
             // 自動更新可能に
             ValidateAutoUpdate(comp);
@@ -45,15 +42,13 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
             }
         }
 
-        public void OverwriteQuaternion(Quaternion quaternion, bool notify = true) {
-            if (notify) {
-                reactiveQuaternion.Value = quaternion;
-            }
+        public void SetQuaternion(Quaternion quaternion) {
+            reactiveQuaternion.Value = quaternion;
             SetQuaternionToSliders(quaternion);
         }
 
-        public virtual void SetDefaultQuaternion(Quaternion quaternion) {
-            OverwriteQuaternion(Quaternion.identity, true);
+        public Quaternion GetQuaternion() {
+            return reactiveQuaternion.Value;
         }
 
         protected void SetQuaternionToSliders(Quaternion quaternion) {
