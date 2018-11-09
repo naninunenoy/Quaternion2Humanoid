@@ -12,14 +12,11 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
         [SerializeField] Text yawText;
 
         Quaternion defaultQuaternion = Quaternion.identity;
-        public void SetDefaultQuaternion(Quaternion quaternion) {
-            defaultQuaternion = quaternion;
-            SetQuaternion(defaultQuaternion * GetQuaternion());//!
-        }
+        public void SetDefaultQuaternion(Quaternion quaternion) { defaultQuaternion = quaternion; }
 
         public void InitQuaternion() { SetQuaternion(defaultQuaternion); }
 
-        public void OverwriteQuaternion(Quaternion quaternion) { SetQuaternion(quaternion); }
+        public void OverwriteQuaternion(Quaternion quaternion) {  SetQuaternion(quaternion);  }
 
         public override void Validate(Component comp) {
             base.Validate(comp);

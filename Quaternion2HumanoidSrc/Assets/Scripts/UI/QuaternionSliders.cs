@@ -42,16 +42,16 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
             }
         }
 
-        public void SetQuaternion(Quaternion quaternion) {
+        protected void SetQuaternion(Quaternion quaternion) {
             reactiveQuaternion.Value = quaternion;
             SetQuaternionToSliders(quaternion);
         }
 
-        public Quaternion GetQuaternion() {
+        protected Quaternion GetQuaternion() {
             return reactiveQuaternion.Value;
         }
 
-        protected void SetQuaternionToSliders(Quaternion quaternion) {
+        private void SetQuaternionToSliders(Quaternion quaternion) {
             isLockReactiveQuaternion = true;
             sliderW.Slider.value = quaternion.w;
             sliderX.Slider.value = quaternion.x;
