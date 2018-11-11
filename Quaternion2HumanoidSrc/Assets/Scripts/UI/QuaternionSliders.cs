@@ -47,10 +47,6 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
             SetQuaternionToSliders(quaternion);
         }
 
-        protected Quaternion GetQuaternion() {
-            return reactiveQuaternion.Value;
-        }
-
         private void SetQuaternionToSliders(Quaternion quaternion) {
             isLockReactiveQuaternion = true;
             sliderW.Slider.value = quaternion.w;

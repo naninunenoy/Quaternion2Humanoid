@@ -16,7 +16,11 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
 
         public void InitQuaternion() { SetQuaternion(defaultQuaternion); }
 
-        public void OverwriteQuaternion(Quaternion quaternion) {  SetQuaternion(quaternion);  }
+        public void OverwriteQuaternion(Quaternion quaternion) { SetQuaternion(quaternion); }
+
+        public Quaternion LocalQuaternion {
+            get { return Quaternion.Inverse(defaultQuaternion) * ReactiveQuaternion.Value; }
+        }
 
         public override void Validate(Component comp) {
             base.Validate(comp);
