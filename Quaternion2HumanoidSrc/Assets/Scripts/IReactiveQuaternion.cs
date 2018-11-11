@@ -20,7 +20,6 @@ namespace Assets.Quaternion2Humanoid.Scripts {
 
         public ChainedReactiveQuaternion(IOverwritableReactiveQuaternion mine) { this.mine = mine; }
 
-
         public void ChainToParent(IReactiveQuaternion parent) {
             parent.ReactiveQuaternion
                   .Select(q0 => { return new { q0, q1 = q0 * mine.LocalQuaternion }; })
@@ -28,17 +27,6 @@ namespace Assets.Quaternion2Humanoid.Scripts {
                       mine.SetDefaultQuaternion(q.q0);
                       mine.OverwriteQuaternion(q.q1);
                   });
-        }
-
-        public void ChainToParents(params IReactiveQuaternion[] parents) {
-            parents.Select(x => x.ReactiveQuaternion.AsObservable())
-                   .CombineLatest()
-                   .Select(quats => { return quats.Aggregate((l, r) => { return l * r; }); })
-                   .Select(q0 => { return new { q0, q1 = q0 * mine.LocalQuaternion }; })
-                   .Subscribe(q => {
-                       mine.SetDefaultQuaternion(q.q0);
-                       mine.OverwriteQuaternion(q.q1);
-                   });
         }
 
         public IReadOnlyReactiveProperty<Quaternion> ReactiveQuaternion { get { return mine.ReactiveQuaternion; } }
