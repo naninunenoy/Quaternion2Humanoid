@@ -27,21 +27,21 @@ namespace Quaternion2Humanoid {
 
         public Transform GetTransfrom(HumanBodyBones bone) { return bonesTransformDict[bone]; }
 
-        public IDisposable SubscribeAsGlobalQuaternionTo(HumanBodyBones to, IObservable<Quaternion> source, float slerpT = 0.5F) {
+        public IDisposable SubscribeAsGlobalQuaternionTo(HumanBodyBones to, IObservable<Quaternion> source) {
             return source.Subscribe(q => {
                 var boneTrans = bonesTransformDict[to];
                 if (boneTrans != null) {
-                    boneTrans.rotation = Quaternion.Slerp(boneTrans.rotation, q, slerpT);
+                    boneTrans.rotation = q;
                     reactiveBones.Value = new BoneQaternion(to, q);
                 }
             });
         }
 
-        public IDisposable SubscribeAsLocalQuaternionTo(HumanBodyBones to, IObservable<Quaternion> source, float slerpT = 0.5F) {
+        public IDisposable SubscribeAsLocalQuaternionTo(HumanBodyBones to, IObservable<Quaternion> source) {
             return source.Subscribe(q => {
                 var boneTrans = bonesTransformDict[to];
                 if (boneTrans != null) {
-                    boneTrans.localRotation = Quaternion.Slerp(boneTrans.localRotation, q, slerpT);
+                    boneTrans.localRotation = q;
                     reactiveBones.Value = new BoneQaternion(to, q);
                 }
             });
