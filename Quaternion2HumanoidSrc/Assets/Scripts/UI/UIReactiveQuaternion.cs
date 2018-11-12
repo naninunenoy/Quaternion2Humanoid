@@ -11,10 +11,20 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
         [SerializeField] Text pitchText;
         [SerializeField] Text yawText;
 
+        [SerializeField] UIReactiveQuaternion[] children;
+
         Quaternion defaultQuaternion = Quaternion.identity;
         public void SetDefaultQuaternion(Quaternion quaternion) { defaultQuaternion = quaternion; }
 
-        public void InitQuaternion() { SetQuaternion(defaultQuaternion); }
+        public void InitQuaternion() { 
+            SetQuaternion(defaultQuaternion); 
+            // 子のInitQuaternionを強制的に呼び出すための力技
+            if (children != null && children.Length > 0) {
+                foreach(var ch in children) {
+                    ch.InitQuaternion();
+                }
+            }
+        }
 
         public void OverwriteQuaternion(Quaternion quaternion) { SetQuaternion(quaternion); }
 
