@@ -13,7 +13,7 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
         ReactiveProperty<float> reactiveValue = new ReactiveProperty<float>();
         public IReadOnlyReactiveProperty<float> ReactiveValue { get { return reactiveValue; } }
 
-        void Awake() {
+        public void Validate(Component comp) {
             // スライダーのイベント
             slider.OnValueChangedAsObservable()
                   .Subscribe(val => {
@@ -22,7 +22,7 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
                       // 値を設定
                       reactiveValue.Value = val;
                   })
-                  .AddTo(this);
+                  .AddTo(comp);
         }
     }
 }

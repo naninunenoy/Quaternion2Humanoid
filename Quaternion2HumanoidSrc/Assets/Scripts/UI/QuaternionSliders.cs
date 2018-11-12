@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
-using Quaternion2Humanoid;
 
 namespace Assets.Quaternion2Humanoid.Scripts.UI {
-    public class QuaternionSliders : MonoBehaviour, IOverwritableReactiveQuaternion {
+    public class QuaternionSliders : MonoBehaviour {
         [SerializeField]
         protected ValueSlider sliderW;
         [SerializeField]
@@ -20,12 +19,14 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
         public IReadOnlyReactiveProperty<Quaternion> ReactiveQuaternion { get { return reactiveQuaternion; } }
 
         public virtual void Validate(Component comp) {
+            sliderW.Validate(comp);
+            sliderX.Validate(comp);
+            sliderY.Validate(comp);
+            sliderZ.Validate(comp);
             // sliderによるQuaternion更新を通知
             SliderQuaternion.Where(_ => { return !isLockReactiveQuaternion; })
-                            .Subscribe(quat => {
-                                reactiveQuaternion.Value = quat;
-                                OverwriteQuaternion(quat);
-                            }).AddTo(comp);
+                            .Subscribe(SetQuaternion)
+                            .AddTo(comp);
             // 自動更新可能に
             ValidateAutoUpdate(comp);
         }
@@ -36,30 +37,26 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
                     sliderW.ReactiveValue,
                     sliderX.ReactiveValue,
                     sliderY.ReactiveValue,
-                    sliderZ.ReactiveValue)
-                    .Select(vals => { return new Quaternion(vals[1], vals[2], vals[3], vals[0]).normalized; });
+                    sliderZ.ReactiveValue
+                ).Select(vals => { return new Quaternion(vals[1], vals[2], vals[3], vals[0]).normalized; });
             }
         }
 
-        public void OverwriteQuaternion(Quaternion quaternion) {
-            // scriptからの上書きはReactivePropertyとして通知しない
-            isLockReactiveQuaternion = true;
+        protected void SetQuaternion(Quaternion quaternion) {
+            reactiveQuaternion.Value = quaternion;
             SetQuaternionToSliders(quaternion);
-            isLockReactiveQuaternion = false;
         }
 
-        public virtual void SetDefaultQuaternion(Quaternion quaternion) {
-            OverwriteQuaternion(Quaternion.identity);
-        }
-
-        protected void SetQuaternionToSliders(Quaternion quaternion) {
+        private void SetQuaternionToSliders(Quaternion quaternion) {
+            isLockReactiveQuaternion = true;
             sliderW.Slider.value = quaternion.w;
             sliderX.Slider.value = quaternion.x;
             sliderY.Slider.value = quaternion.y;
             sliderZ.Slider.value = quaternion.z;
+            isLockReactiveQuaternion = false;
         }
 
-        public void ValidateAutoUpdate(Component addto) {
+        private void ValidateAutoUpdate(Component addto) {
             ValidateAutoUpdateSafe(sliderW.GetComponent<ValueAutoUpdater>(), addto);
             ValidateAutoUpdateSafe(sliderX.GetComponent<ValueAutoUpdater>(), addto);
             ValidateAutoUpdateSafe(sliderY.GetComponent<ValueAutoUpdater>(), addto);
