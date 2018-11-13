@@ -65,16 +65,18 @@ namespace Assets.Quaternion2Humanoid.Scripts {
             humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.Neck, neck.ReactiveQuaternion.ToRelativeQuaternionObservable(world2Boby)).AddTo(this);
             // leftArm
             {
+                var world2LeftArm = humanoidBones.GetTransfrom(HumanBodyBones.LeftUpperArm).rotation;
+                var body2LeftArm = Quaternion.Inverse(world2LeftArm) * world2Boby;
+                Debug.Log(body2LeftArm.eulerAngles);
                 var upperArm = new ChainedReactiveQuaternion(leftUpperArmQuat);
                 upperArm.ChainToParent(spine);
                 var lowerArm = new ChainedReactiveQuaternion(leftArmQuat);
                 lowerArm.ChainToParent(upperArm);
                 var hand = new ChainedReactiveQuaternion(leftHandQuat);
                 hand.ChainToParent(lowerArm);
-                var world2LeftArm = humanoidBones.GetTransfrom(HumanBodyBones.LeftUpperArm).rotation;
-                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.LeftUpperArm, upperArm.ReactiveQuaternion.ToRelativeQuaternionObservable(world2LeftArm)).AddTo(this);
-                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.LeftLowerArm, lowerArm.ReactiveQuaternion.ToRelativeQuaternionObservable(world2LeftArm)).AddTo(this);
-                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.LeftHand, hand.ReactiveQuaternion.ToRelativeQuaternionObservable(world2LeftArm)).AddTo(this);
+                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.LeftUpperArm, upperArm.ReactiveQuaternion.ToRelativeQuaternionObservable(world2LeftArm * body2LeftArm)).AddTo(this);
+                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.LeftLowerArm, lowerArm.ReactiveQuaternion.ToRelativeQuaternionObservable(world2LeftArm * body2LeftArm)).AddTo(this);
+                humanoidBones.SubscribeAsGlobalQuaternionTo(HumanBodyBones.LeftHand, hand.ReactiveQuaternion.ToRelativeQuaternionObservable(world2LeftArm * body2LeftArm)).AddTo(this);
             }
             // rightArm
             {
