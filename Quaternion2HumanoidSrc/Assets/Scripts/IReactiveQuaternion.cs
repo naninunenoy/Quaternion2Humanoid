@@ -6,7 +6,6 @@ using UniRx;
 
 namespace Assets.Quaternion2Humanoid.Scripts {
     public interface IOverwritableReactiveQuaternion : IReactiveQuaternion {
-        void Validate(Component comp);
         void OverwriteQuaternion(Quaternion quaternion);
         void SetDefaultQuaternion(Quaternion quaternion);
         Quaternion LocalQuaternion { get; }
