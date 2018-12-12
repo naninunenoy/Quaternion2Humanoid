@@ -67,9 +67,8 @@ namespace Assets.Quaternion2Humanoid.Scripts {
             // leftArm
             {
                 var world2LeftArm = humanoidBones.GetTransfrom(HumanBodyBones.LeftUpperArm).rotation;
-                var spine2LeftArm = Quaternion.Inverse(world2Spine) * world2LeftArm;
                 var upperArm = new ChainedReactiveQuaternion(leftUpperArmQuat);
-                upperArm.ChainToParent(spine, spine2LeftArm);
+                upperArm.ChainToParent(spine.ReactiveQuaternion.ToRelativeQuaternionObservable(Quaternion.Inverse(world2LeftArm)).ToReactiveQuaternion(world2LeftArm));
                 var lowerArm = new ChainedReactiveQuaternion(leftArmQuat);
                 lowerArm.ChainToParent(upperArm);
                 var hand = new ChainedReactiveQuaternion(leftHandQuat);
