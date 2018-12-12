@@ -18,12 +18,12 @@ namespace Assets.Quaternion2Humanoid.Scripts {
         class InnerQuaternionSource : IReactiveQuaternion {
             IReadOnlyReactiveProperty<Quaternion> reactiveQuaternion;
             public IReadOnlyReactiveProperty<Quaternion> ReactiveQuaternion { get { return reactiveQuaternion; } }
-            public InnerQuaternionSource(IObservable<Quaternion> source, Quaternion initVal) {
-                reactiveQuaternion = source.ToReactiveProperty(initVal); 
+            public InnerQuaternionSource(IObservable<Quaternion> source) {
+                reactiveQuaternion = source.ToReactiveProperty();
             }
         }
-        public static IReactiveQuaternion ToReactiveQuaternion(this IObservable<Quaternion> source, Quaternion initQuat) {
-            return new InnerQuaternionSource(source, initQuat);
+        public static IReactiveQuaternion ToReactiveQuaternion(this IObservable<Quaternion> source) {
+            return new InnerQuaternionSource(source);
         }
     }
 
