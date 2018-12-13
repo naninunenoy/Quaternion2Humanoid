@@ -15,6 +15,8 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
 
         Quaternion defaultQuaternion = Quaternion.identity;
         public void SetDefaultQuaternion(Quaternion quaternion) { defaultQuaternion = quaternion; }
+        Quaternion parentQuaternion = Quaternion.identity;
+        public void SetParentQuaternion(Quaternion quaternion) { parentQuaternion = quaternion; }
 
         public void InitQuaternion() { 
             SetQuaternion(defaultQuaternion); 
@@ -29,7 +31,7 @@ namespace Assets.Quaternion2Humanoid.Scripts.UI {
         public void OverwriteQuaternion(Quaternion quaternion) { SetQuaternion(quaternion); }
 
         public Quaternion LocalQuaternion {
-            get { return Quaternion.Inverse(defaultQuaternion) * ReactiveQuaternion.Value; }
+            get { return Quaternion.Inverse(parentQuaternion) * ReactiveQuaternion.Value; }
         }
 
         public override void Validate(Component comp) {
