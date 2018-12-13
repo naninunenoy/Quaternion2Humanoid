@@ -33,11 +33,9 @@ namespace Assets.Quaternion2Humanoid.Scripts {
 
         public ChainedReactiveQuaternion(IOverwritableReactiveQuaternion mine) { this.mine = mine; }
 
-        public void ChainToParent(IReactiveQuaternion parent, Quaternion parent2child = default(Quaternion)) {
-            var convert = parent2child.Equals(default(Quaternion)) ? Quaternion.identity : parent2child;
-            mine.SetDefaultQuaternion(convert);
+        public void ChainToParent(IReactiveQuaternion parent) {
             parent.ReactiveQuaternion
-                  .Select(q => { return convert * q; })
+                  .Select(q => { return q; })
                   .Select(q0 => { return new { q0, q1 = q0 * mine.LocalQuaternion }; })
                   .Subscribe(q => {
                       mine.SetParentQuaternion(q.q0);
